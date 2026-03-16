@@ -38,7 +38,7 @@ public class TaskController {
     @PostMapping("/api/v1/tasks/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable Long id,@RequestBody Task task) {
         task.setId(id);
-        return ResponseEntity.ok(taskService.createTask(task));
+        return ResponseEntity.ok(taskService.updateTask(task));
     }
 
     // 5.Toggle Task Status
