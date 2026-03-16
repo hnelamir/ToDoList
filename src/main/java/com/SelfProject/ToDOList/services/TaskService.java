@@ -3,7 +3,9 @@ package com.SelfProject.ToDOList.services;
 import com.SelfProject.ToDOList.model.Task;
 import com.SelfProject.ToDOList.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -45,7 +47,10 @@ public class TaskService {
     }
     //5.Show Specific Task
     public Task getTaskById(Long id) {
-        return taskRepository.findTaskById(id);
+        Task task= taskRepository.findTaskById(id);
+        if(task==null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Task not found");
+        return task;
     }
     
     public List<Task> getAllTasks(){
