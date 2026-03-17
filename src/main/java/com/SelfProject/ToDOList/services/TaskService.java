@@ -27,8 +27,14 @@ public class TaskService {
     public Task toggleTask(Long taskId) {
         Task task = getTaskById(taskId);
         task.setCompleted(!task.isCompleted());
-        task.setCompletedAt(LocalDateTime.now());
-        setTaskDuration(task);
+        if  (task.isCompleted()) {
+            task.setCompletedAt(LocalDateTime.now());
+            setTaskDuration(task);
+        }
+        else {
+            task.setCompletedAt(null);
+            task.setDuration(null);
+        }
         return taskRepository.save(task);
     }
 
