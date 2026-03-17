@@ -46,7 +46,11 @@ public class TaskController {
     public ResponseEntity<Task> toggleTaskStatus(@PathVariable Long id) {
         return ResponseEntity.ok(taskService.toggleTask(id));
     }
-
+    // 6.Get task By id
+    @GetMapping("/api/v1/tasks/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+        return ResponseEntity.ok(taskService.getTaskById(id));
+    }
 
 
 
