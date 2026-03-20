@@ -23,14 +23,18 @@ public class Task {
     private LocalDateTime completedAt;
     private LocalDate dueDate;
     private Duration duration;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
     /*---------------- Constructors ----------------*/
     public Task() {
 
     }
 
-    public Task(String title,LocalDate dueDate) {
+    public Task(String title,LocalDate dueDate,User user) {
         this.title = title;
         this.dueDate = dueDate;
+        this.user = user;
     }
     /*---------------- Getters&Setters ----------------*/
 
@@ -100,7 +104,13 @@ public class Task {
         return minutes + " min " + seconds + " sec";
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
     /*---------------- toString ----------------*/
 
     @Override
@@ -111,8 +121,9 @@ public class Task {
                 ", completed=" + completed +
                 ", createdAt=" + createdAt +
                 ", completedAt=" + completedAt +
-                ", duedate=" + dueDate +
+                ", dueDate=" + dueDate +
                 ", duration=" + duration +
+                ", user=" + user +
                 '}';
     }
 
